@@ -36,12 +36,12 @@ steps:
 #    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 #    zipAfterPublish: True
 
-#- task: Npm@1
-#  displayName: 'Restore Angular Dependencies'
-#  inputs:
-#    workingDir: 'JWTerritorySPA'
-#    command: install
-#    verbose: false
+- task: Npm@1
+  displayName: 'Restore Angular Dependencies'
+  inputs:
+    workingDir: 'JWTerritorySPA'
+    command: install
+    verbose: false
 
 - task: PowerShell@1
   displayName: 'Rename Files'
@@ -57,24 +57,24 @@ steps:
       $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
       [System.IO.File]::WriteAllLines('JWTerritorySPA/src/app/app-config.json', $file, $Utf8NoBomEncoding)
 
-#- task: Npm@1
-#  displayName: 'Build Angular'
-#  inputs:
-#    command: custom
-#    customCommand: run build --prod
-#    workingDir: 'JWTerritorySPA'
+- task: Npm@1
+  displayName: 'Build Angular'
+  inputs:
+    command: custom
+    customCommand: run build --prod
+    workingDir: 'JWTerritorySPA'
 
-#- task: ArchiveFiles@2
-#  inputs:
-#    rootFolderOrFile: 'JWTerritorySPA/dist/jwterritory-spa'
-#    includeRootFolder: false 
-#    archiveType: 'zip' # Options: zip, 7z, tar, wim
-#    archiveFile: '$(Build.ArtifactStagingDirectory)/Spa$(Build.BuildId).zip' 
-#    replaceExistingArchive: false 
-#    #verbose: # Optional
-#    #quiet: # Optional
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'JWTerritorySPA/dist/jwterritory-spa'
+    includeRootFolder: false 
+    archiveType: 'zip' # Options: zip, 7z, tar, wim
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Spa$(Build.BuildId).zip' 
+    replaceExistingArchive: false 
+    #verbose: # Optional
+    #quiet: # Optional
 
-#- task: PublishPipelineArtifact@0
-#  inputs:
-#    artifactName: ArtifactProd
-#    targetPath: '$(Build.ArtifactStagingDirectory)'
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: ArtifactProd
+    targetPath: '$(Build.ArtifactStagingDirectory)'
