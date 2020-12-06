@@ -50,13 +50,6 @@ steps:
     customCommand: run build --prod
     workingDir: 'JWTerritorySPA'
 
-- task: CopyFiles@1
-  inputs:
-    sourceFolder: 'JWTerritorySPA/src/assets/TerritoryCards'
-    targetFolder: 'JWTerritorySPA/dist/jwterritory-spa/assets/TerritoryCards'
-    cleanTargetFolder: false # Optional
-    overWrite: false # Optional
-
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: 'JWTerritorySPA/dist/jwterritory-spa'
