@@ -43,6 +43,11 @@ steps:
     command: install
     verbose: false
 
+- task: PowerShell@1
+  displayName: 'Rename Files'
+  inputs:
+    inlineScript: Rename-Item -Path 'JWTerritorySPA/src/app/app-config-template.json' -NewName 'app-config.json' 
+
 - task: Npm@1
   displayName: 'Build Angular'
   inputs:
