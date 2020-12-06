@@ -1,0 +1,23 @@
+{
+  "auth": {
+    "clientId": "##clientid##",
+    "authority": "https://login.microsoftonline.com/##tenantid##",
+    "validateAuthority": true,
+    "redirectUri": "https://##app##.azurewebsites.net",
+    "postLogoutRedirectUri": "https://##app##.azurewebsites.net",
+    "navigateToLoginRequestUrl": true
+  },
+  "cache": {
+    "cacheLocation": "localStorage"
+  },
+  "scopes": {
+    "loginRequest": [ "openid", "profile" ]
+  },
+  "resources": {
+    "jwTerritoryApi": {
+      "resourceUri": "https://##service##.azurewebsites.net/api/territory/",
+      "exportUri": "https://##service##.azurewebsites.net/api/export",
+      "resourceScope": "##scope##"
+    }
+  }
+}

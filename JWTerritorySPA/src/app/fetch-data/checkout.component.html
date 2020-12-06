@@ -1,0 +1,20 @@
+<table *ngIf="checkout" [ngStyle]="setTableStyle()">
+  <tr>
+    <td>
+      <input class="form-control input-min-width-95p" [(ngModel)]="name" (keyup)="nameKeyup($event)" (focusout)="focusOut()" />
+    </td>
+  </tr>
+  <tr>
+    <td><input class="form-control input-min-width-95p" [(ngModel)]="checkedOut" type="date" name="checkedOut" [disabled]="!name || name.length == 0" (change)="activity()" (focusout)="focusOut()"/></td>
+  </tr>
+  <tr>
+    <td><input class="form-control input-min-width-95p" [(ngModel)]="checkedIn" type="date" name="checkedIn" [disabled]="!name || name.length == 0 || !checkedOut" (change)="activity()" (focusout)="focusOut()"/></td>
+  </tr>
+  <tr [style.display]="errored ? 'block' : 'none'">
+    <td>
+      <p>Error: Did Not Save!!</p>
+    </td>
+  </tr>
+
+</table>
+

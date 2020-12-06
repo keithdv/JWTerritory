@@ -1,0 +1,42 @@
+<app-fetch-data></app-fetch-data>
+<div *ngIf="territories" class="scrollmenu">
+  <table>
+    <tr>
+      <th></th>
+      <th *ngFor="let terr of territories">
+        <div *ngIf="terr.territoryCardFileName?.length">
+          <h2>
+            <a href="assets/TerritoryCards/{{terr.territoryCardFileName}}" target="_blank">{{terr.section}} {{terr.number}}</a>
+          </h2>
+        </div>
+        <div *ngIf="!terr.territoryCardFileName?.length">
+          <h2>
+            {{terr.section}} {{terr.number}}
+          </h2>
+        </div>
+      </th>
+
+    </tr>
+    <tr>
+      <td style="vertical-align:top">
+        <table style="width: 125px">
+          <tr>
+            <td><p>Notes</p></td>
+          </tr>
+          <tr>
+            <td><p>Publisher</p></td>
+          </tr>
+          <tr>
+            <td><p>Checked Out</p></td>
+          </tr>
+          <tr>
+            <td><p>Checked In</p></td>
+          </tr>
+        </table>
+      </td>
+      <td *ngFor="let terr of territories" style="vertical-align:top">
+        <territory [territory]="terr"></territory>
+      </td>
+    </tr>
+  </table>
+</div>

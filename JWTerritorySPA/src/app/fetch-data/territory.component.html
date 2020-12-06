@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <td>
+      <textarea class="form-control" [(ngModel)]="notes" (keyup)="keyup($event)" (focusout)="focusout()"></textarea>
+    </td>
+  </tr>
+  <tr [style.display]="errored ? 'block' : 'none'">
+    <td>
+      <p>Error: Did Not Save!!</p>
+    </td>
+  </tr>
+  <tr *ngFor="let co of territory.checkouts">
+    <td>
+      <checkout [checkout]="co"></checkout>
+    </td>
+  </tr>
+</table>
+

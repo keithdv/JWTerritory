@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <td>
+      <h2 style="font-size: 30px; font-weight: bold; margin: 10px;">Section</h2>
+    </td>
+    <td *ngFor="let section of sections">
+      <a [routerLink]="['/territory', section]" style="font-size: 30px; font-weight: bold; margin: 10px;">{{section}}</a>
+    </td>
+    <td>
+      <h2 style="font-size: 30px; font-weight: bold; margin: 10px;">Export</h2>
+    </td>
+    <td>
+      <a [routerLink]="['/territorylastrecord']">Last Record</a>
+    </td>
+  </tr>
+</table>
+

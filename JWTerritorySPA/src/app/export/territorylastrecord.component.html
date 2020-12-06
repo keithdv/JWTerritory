@@ -1,0 +1,33 @@
+<app-fetch-data></app-fetch-data>
+<div *ngIf="territorylastrecord" class="scrollmenu">
+  <table>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        Name
+      </th>
+      <th>
+        Checkout
+      </th>
+      <th>
+        Checkin
+      </th>
+    </tr>
+    <tr *ngFor="let co of territorylastrecord">
+      <td>
+        {{co.territoryId}}
+      </td>
+      <td>
+        {{co.name}}
+      </td>
+      <td>
+        {{co.checkedOut | date:'shortDate'}}
+      </td>
+      <td>
+        {{co.checkedIn | date:'shortDate'}}
+      </td>
+    </tr>
+  </table>
+</div>
