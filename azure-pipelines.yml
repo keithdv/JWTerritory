@@ -17,24 +17,24 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
-#- task: NuGetCommand@2
-#  inputs:
-#    restoreSolution: '$(solution)'
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
 
-#- task: DotNetCoreCLI@2
-#  displayName: Build
-#  inputs:
-#    command: build
-#    projects: '**/JWTerritoryAPI.csproj'
-#    arguments: '--configuration $(buildConfiguration)' # Update this to match your need
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: build
+    projects: '**/JWTerritoryAPI.csproj'
+    arguments: '--configuration $(buildConfiguration)' # Update this to match your need
 
-#- task: DotNetCoreCLI@2
-#  inputs:
-#    command: publish
-#    publishWebProjects: True
-#    projects: '**/JWTerritoryAPI.csproj'
-#    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-#    zipAfterPublish: True
+- task: DotNetCoreCLI@2
+  inputs:
+    command: publish
+    publishWebProjects: True
+    projects: '**/JWTerritoryAPI.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
 
 - task: Npm@1
   displayName: 'Restore Angular Dependencies'
