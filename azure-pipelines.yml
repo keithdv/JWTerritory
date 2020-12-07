@@ -51,7 +51,7 @@ steps:
       $file =  (Get-Content -Path 'JWTerritorySPA/src/app/app-config-template.json')
       $file = $file -replace "##clientid##", "f2eca5f9-3cef-4140-a977-7ca4327239af"
       $file = $file -replace "##tenantid##", "3dfe3a5d-a0f4-4777-a104-8dec5cbc8495"
-      $file = $file -replace "##app##", "mtkajw"
+      $file = $file -replace "##app##", "minnetonkajw"
       $file = $file -replace "##service##", "mtkajwservice"
       $file = $file -replace "##scope##", "api://1af6b9f6-b4a5-4885-94f7-d4056a0ce214/FullAccess"
       $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
