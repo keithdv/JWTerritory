@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -29,6 +30,7 @@ namespace JWTerritoryAPI.Controllers
         public TRContext DbContext { get; }
 
         [HttpGet]
+        [Route("LastRecords")]
         public async Task<List<TerritoryLastRecord>> GetTerrirotyLastRecords()
         {
             var report = await DbContext.RunTerrirotyLastRecords();
@@ -103,6 +105,62 @@ namespace JWTerritoryAPI.Controllers
 
 
             return report;
+        }
+
+        [HttpGet]
+        [Route("Backup")]
+        public async Task<IActionResult> Backup()
+        {
+            var backup = await DbContext.Backup();
+
+            var result = new string[backup.territories.Count, 13];
+
+            for (var i = 0; i < backup.territories.Count; i++)
+            {
+                var t = backup.territories[i];
+                result[i, 0] = $"{t.Section}{t.Number}";
+
+                if (backup.checkouts.TryGetValue(t.TerritoryId, out var checkouts))
+                {
+                    void Set(Checkout checkout, int ii)
+                    {
+                        if (checkout is null)
+                        {
+                            result[i, ii] = string.Empty;
+                            result[i, ii + 1] = string.Empty;
+                            result[i, ii + 2] = string.Empty;
+                        }
+                        else
+                        {
+                            result[i, ii] = checkout.Name?.Replace(',', '-') ?? string.Empty;
+                            result[i, ii + 1] = checkout.CheckedOut?.ToShortDateString() ?? string.Empty;
+                            result[i, ii + 2] = checkout.CheckedIn?.ToShortDateString() ?? string.Empty;
+                        }
+                    }
+                    Set(checkouts.SingleOrDefault(c => c.CheckoutId == 0), 1);
+                    Set(checkouts.SingleOrDefault(c => c.CheckoutId == 1), 4);
+                    Set(checkouts.SingleOrDefault(c => c.CheckoutId == 2), 7);
+                    Set(checkouts.SingleOrDefault(c => c.CheckoutId == 3), 10);
+
+                }
+            }
+
+            var csvFile = new StringBuilder();
+
+            for(var i = 0; i < result.GetLength(1); i++)
+            {
+                for(var ii = 0; ii < result.GetLength(0); ii++)
+                {
+                    csvFile.Append(result[ii, i]);
+                    csvFile.Append(", ");
+                }
+                csvFile.Remove(csvFile.Length - 2, 2);
+                csvFile.AppendLine();
+            }
+
+            var byteArray = Encoding.ASCII.GetBytes(csvFile.ToString());
+            MemoryStream stream = new MemoryStream(byteArray);
+            return new FileStreamResult(stream, "text/csv");
         }
     }
 }

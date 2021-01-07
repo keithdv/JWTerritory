@@ -26,12 +26,14 @@ export class TerritoryLastRecordComponent implements OnInit {
 
     this.route.params.subscribe(params => {
 
-      this.http.get<TerritoryLastRecord[]>(this._baseUrl).subscribe(result => {
+      this.http.get<TerritoryLastRecord[]>(this._baseUrl + 'LastRecords').subscribe(result => {
 
         this.territorylastrecord = result;
 
       }, error => console.error(error));
     });
+
+
 
   }
 

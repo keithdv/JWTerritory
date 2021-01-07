@@ -55,6 +55,13 @@ namespace JWTerritoryAPI.Models
             return await TerritoryLastRecords.FromSqlRaw("export_TerritoryLastRecord").ToListAsync();
         }
 
+        public async Task<(Dictionary<string, List<Checkout>> checkouts, List<Territory> territories)> Backup()
+        {
+            var checkout = await Checkouts.ToListAsync();
+            var territories = await Territorys.ToListAsync();
+            return (checkout.OrderBy(c => c.TerritoryId).GroupBy(c => c.TerritoryId).ToDictionary(c => c.Key, c => c.ToList()), territories);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Territory>()

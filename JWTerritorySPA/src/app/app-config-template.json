@@ -16,7 +16,7 @@
   "resources": {
     "jwTerritoryApi": {
       "resourceUri": "https://##service##.azurewebsites.net/api/territory/",
-      "exportUri": "https://##service##.azurewebsites.net/api/export",
+      "exportUri": "https://##service##.azurewebsites.net/api/export/",
       "resourceScope": "##scope##"
     }
   }

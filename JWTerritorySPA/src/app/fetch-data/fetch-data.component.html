@@ -1,16 +1,19 @@
 <table>
-  <tr>
+  <tr style="vertical-align: middle">
     <td>
-      <h2 style="font-size: 30px; font-weight: bold; margin: 10px;">Section</h2>
+      <h2 style="font-size: 30px; font-weight: bold; margin: 10px;  vertical-align: middle">Section</h2>
     </td>
     <td *ngFor="let section of sections">
-      <a [routerLink]="['/territory', section]" style="font-size: 30px; font-weight: bold; margin: 10px;">{{section}}</a>
+      <a [routerLink]="['/territory', section]" style="font-size: 30px; margin: 10px; vertical-align: middle">{{section}}</a>
     </td>
     <td>
-      <h2 style="font-size: 30px; font-weight: bold; margin: 10px;">Export</h2>
+      <h2 style="font-size: 30px; font-weight: bold; margin: 10px; vertical-align: middle">Export</h2>
     </td>
     <td>
-      <a [routerLink]="['/territorylastrecord']">Last Record</a>
+      <a [routerLink]="['/territorylastrecord']" style="font-size: 30px; margin: 10px; vertical-align: middle">Last Record</a>
+    </td>
+    <td>
+      <a [routerLink]="" (click)="backup()" style="font-size: 30px; margin: 10px; vertical-align: middle">Backup</a>
     </td>
   </tr>
 </table>
